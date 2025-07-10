@@ -1,0 +1,41 @@
+# Meta MCP - Working Requirements (without FastMCP)
+# Core MCP Dependencies
+mcp>=1.5.0
+
+# Web Framework (for HTTP endpoints later)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# HTTP & Networking
+httpx>=0.25.0
+websockets>=12.0
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Data & Validation
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Database & Storage
+sqlalchemy>=2.0.0
+aiosqlite>=0.19.0
+
+# Configuration & Environment
+python-dotenv>=1.0.0
+
+# Async & Concurrency
+anyio>=4.0.0
+
+# Logging
+structlog>=23.0.0
+
+# Utilities
+click>=8.1.0
+rich>=13.0.0
+
+# Security
+cryptography>=41.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0

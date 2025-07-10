@@ -1,0 +1,138 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  # Meta MCP Server
+  meta-mcp:
+    build: .
+    ports:
+      - "8000:8000"    # Main MCP server
+      - "3001:3001"    # SSE transport
+      - "3002:3002"    # HTTP transport  
+      - "3003:3003"    # WebSocket transport
+    environment:
+      - DEBUG=true
+      - DATABASE_URL=postgresql+asyncpg://meta_mcp:secure_password@postgres:5432/meta_mcp
+      - REDIS_URL=redis://redis:6379/0
+      - LOG_LEVEL=INFO
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN:-}
+      - SLACK_TEAM_ID=${SLACK_TEAM_ID:-}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY:-}
+      - BRAVE_API_KEY=${BRAVE_API_KEY:-}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - meta-mcp-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: meta_mcp
+      POSTGRES_USER: meta_mcp
+      POSTGRES_PASSWORD: secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - meta-mcp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meta_mcp -d meta_mcp"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - meta-mcp-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # Nginx Reverse Proxy (optional)
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/ssl:/etc/nginx/ssl
+    depends_on:
+      - meta-mcp
+    restart: unless-stopped
+    networks:
+      - meta-mcp-network
+
+  # Prometheus Monitoring (optional)
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    restart: unless-stopped
+    networks:
+      - meta-mcp-network
+
+  # Grafana Dashboards (optional)
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./docker/grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - meta-mcp-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  meta-mcp-network:
+    driver: bridge
+
+---

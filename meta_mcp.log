@@ -1,0 +1,165 @@
+2025-07-10 15:47:04,723 - __main__ - INFO - Starting Meta MCP Server...
+2025-07-10 15:47:04,770 - core.registry - INFO - MCP Server Registry initialized
+2025-07-10 15:47:04,771 - core.router - INFO - Loaded 7 default routing rules
+2025-07-10 15:47:04,771 - __main__ - INFO - Registered 7 Meta MCP tools
+2025-07-10 15:47:34,832 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 15:47:34,864 - core.registry - INFO - Registered MCP server: weather-mcp (8741cd58-a45f-4c9f-92eb-008b7f1bb168)
+2025-07-10 15:47:34,867 - __main__ - INFO - Registered example server: weather-mcp (8741cd58-a45f-4c9f-92eb-008b7f1bb168)
+2025-07-10 15:48:04,939 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 15:48:04,963 - core.registry - INFO - Registered MCP server: memory-mcp (1e93e617-3ffd-4176-9711-d5787c40913d)
+2025-07-10 15:48:04,963 - __main__ - INFO - Registered example server: memory-mcp (1e93e617-3ffd-4176-9711-d5787c40913d)
+2025-07-10 15:48:35,032 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 15:48:35,041 - core.registry - INFO - Registered MCP server: filesystem-mcp (04f44b89-46d4-4dab-b47f-616e1e8c1ba5)
+2025-07-10 15:48:35,041 - __main__ - INFO - Registered example server: filesystem-mcp (04f44b89-46d4-4dab-b47f-616e1e8c1ba5)
+2025-07-10 15:48:35,041 - __main__ - INFO - Auto-connecting to registered servers...
+2025-07-10 15:48:35,042 - __main__ - INFO - Connecting to dispatch...
+2025-07-10 15:48:35,479 - mcp.protocol - INFO - Discovered 16 tools
+2025-07-10 15:48:35,480 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 15:48:35,480 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 15:48:35,499 - core.registry - INFO - Connected to MCP server: dispatch
+2025-07-10 15:48:36,512 - __main__ - INFO - Connected to dispatch - 16 tools
+2025-07-10 15:48:36,512 - __main__ - INFO - Connecting to weather-mcp...
+2025-07-10 15:49:06,565 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 15:49:06,579 - __main__ - INFO - Connecting to memory-mcp...
+2025-07-10 15:49:08,247 - mcp.protocol - INFO - Discovered 9 tools
+2025-07-10 15:49:08,247 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 15:49:08,248 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 15:49:08,261 - core.registry - INFO - Connected to MCP server: memory-mcp
+2025-07-10 15:49:09,270 - __main__ - INFO - Connected to memory-mcp - 9 tools
+2025-07-10 15:49:09,271 - __main__ - INFO - Connecting to filesystem-mcp...
+2025-07-10 15:49:39,330 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 15:49:39,338 - __main__ - INFO - Meta MCP Server initialized successfully
+2025-07-10 15:49:39,339 - mcp.server - INFO - Starting MCP server Meta MCP Server with stdio transport
+2025-07-10 15:56:50,696 - mcp.server - INFO - MCP server stopped
+2025-07-10 15:56:50,799 - mcp.protocol - INFO - Disconnected from MCP server
+2025-07-10 15:56:50,805 - mcp.protocol - INFO - Disconnected from MCP server
+2025-07-10 15:56:50,816 - core.registry - INFO - MCP Server Registry shutdown complete
+2025-07-10 15:56:50,834 - __main__ - INFO - Meta MCP Server shutdown complete
+2025-07-10 15:57:16,931 - main - INFO - Starting Meta MCP Server...
+2025-07-10 15:57:17,030 - core.registry - INFO - MCP Server Registry initialized
+2025-07-10 15:57:17,031 - core.router - INFO - Loaded 7 default routing rules
+2025-07-10 15:57:17,031 - main - INFO - Registered 7 Meta MCP tools
+2025-07-10 15:57:17,037 - core.registry - ERROR - Failed to register server weather-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('d20b6c7c-f80a-4ceb-9d73-e0fe0aaf7b61', 'weather-mcp', 'Weather information MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@h1deya/mcp-server-weather"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 19:57:17.034973', '2025-07-10 19:57:17.034977', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 15:57:17,047 - main - WARNING - Failed to register example server weather-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('d20b6c7c-f80a-4ceb-9d73-e0fe0aaf7b61', 'weather-mcp', 'Weather information MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@h1deya/mcp-server-weather"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 19:57:17.034973', '2025-07-10 19:57:17.034977', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 15:57:17,053 - core.registry - ERROR - Failed to register server memory-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('f08f8872-5252-45a7-9df4-c9d3a9aa36b5', 'memory-mcp', 'Memory MCP server for knowledge storage', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-memory"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 19:57:17.050997', '2025-07-10 19:57:17.051121', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 15:57:17,055 - main - WARNING - Failed to register example server memory-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('f08f8872-5252-45a7-9df4-c9d3a9aa36b5', 'memory-mcp', 'Memory MCP server for knowledge storage', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-memory"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 19:57:17.050997', '2025-07-10 19:57:17.051121', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 15:57:17,058 - core.registry - ERROR - Failed to register server filesystem-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('2f7c1c3e-2c9f-43a2-bc07-fde1e79c1304', 'filesystem-mcp', 'Filesystem MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 19:57:17.056046', '2025-07-10 19:57:17.056051', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 15:57:17,061 - main - WARNING - Failed to register example server filesystem-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('2f7c1c3e-2c9f-43a2-bc07-fde1e79c1304', 'filesystem-mcp', 'Filesystem MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 19:57:17.056046', '2025-07-10 19:57:17.056051', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 15:57:17,063 - main - INFO - Auto-connecting to registered servers...
+2025-07-10 15:57:17,064 - main - INFO - Connecting to weather-mcp...
+2025-07-10 15:57:17,551 - mcp.protocol - INFO - Discovered 16 tools
+2025-07-10 15:57:17,557 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 15:57:17,558 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 15:57:17,594 - core.registry - INFO - Connected to MCP server: dispatch
+2025-07-10 15:57:19,352 - mcp.protocol - INFO - Discovered 9 tools
+2025-07-10 15:57:19,353 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 15:57:19,353 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 15:57:19,370 - core.registry - INFO - Connected to MCP server: memory-mcp
+2025-07-10 15:57:20,036 - mcp.protocol - INFO - Discovered 2 tools
+2025-07-10 15:57:20,037 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 15:57:20,037 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 15:57:20,051 - core.registry - INFO - Connected to MCP server: weather-mcp
+2025-07-10 15:57:21,062 - main - INFO - Connected to weather-mcp - 2 tools
+2025-07-10 15:57:21,063 - main - INFO - Connecting to filesystem-mcp...
+2025-07-10 15:57:51,104 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 15:57:51,112 - main - INFO - Meta MCP Server initialized successfully
+2025-07-10 15:59:15,964 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-9' coro=<McpClient._read_stdio_responses() done, defined at C:\etech\SupportTickets\meta-mcp\src\mcp\protocol.py:316> exception=ValueError('Separator is found, but chunk is longer than limit')>
+Traceback (most recent call last):
+  File "C:\Python313\Lib\asyncio\streams.py", line 562, in readline
+    line = await self.readuntil(sep)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\streams.py", line 680, in readuntil
+    raise exceptions.LimitOverrunError(
+        'Separator is found, but chunk is longer than limit', match_start)
+asyncio.exceptions.LimitOverrunError: Separator is found, but chunk is longer than limit
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\etech\SupportTickets\meta-mcp\src\mcp\protocol.py", line 321, in _read_stdio_responses
+    async for line in self._process.stdout:
+    ...<4 lines>...
+            logger.error(f"Failed to parse stdio message: {e}")
+  File "C:\Python313\Lib\asyncio\streams.py", line 784, in __anext__
+    val = await self.readline()
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\asyncio\streams.py", line 571, in readline
+    raise ValueError(e.args[0])
+ValueError: Separator is found, but chunk is longer than limit
+2025-07-10 15:59:43,369 - main - ERROR - Failed to call tool: MCP Error -32001: Request timeout for method tools/call
+2025-07-10 15:59:47,633 - core.registry - WARNING - Health check failed for dispatch: MCP Error -32001: Request timeout for method tools/list
+2025-07-10 16:01:17,652 - core.registry - WARNING - Health check failed for dispatch: MCP Error -32001: Request timeout for method tools/list
+2025-07-10 16:02:47,672 - core.registry - WARNING - Health check failed for dispatch: MCP Error -32001: Request timeout for method tools/list
+2025-07-10 16:03:09,615 - core.registry - WARNING - Error disconnecting client: 
+2025-07-10 16:03:09,618 - mcp.protocol - ERROR - Failed to parse stdio message: Expecting value: line 1 column 1 (char 0)
+2025-07-10 16:03:09,619 - mcp.protocol - INFO - Disconnected from MCP server
+2025-07-10 16:03:09,622 - mcp.protocol - ERROR - Failed to parse stdio message: Expecting value: line 1 column 1 (char 0)
+2025-07-10 16:03:09,624 - mcp.protocol - INFO - Disconnected from MCP server
+2025-07-10 16:03:09,626 - core.registry - INFO - MCP Server Registry shutdown complete
+2025-07-10 16:03:09,626 - main - INFO - Meta MCP Server shutdown complete
+2025-07-10 16:03:09,641 - __main__ - INFO - Server stopped by user
+2025-07-10 16:03:13,873 - main - INFO - Starting Meta MCP Server...
+2025-07-10 16:03:14,001 - core.registry - INFO - MCP Server Registry initialized
+2025-07-10 16:03:14,001 - core.router - INFO - Loaded 7 default routing rules
+2025-07-10 16:03:14,002 - main - INFO - Registered 7 Meta MCP tools
+2025-07-10 16:03:14,007 - core.registry - ERROR - Failed to register server weather-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('54cffb1d-2538-4011-95a7-0ddbb32e2482', 'weather-mcp', 'Weather information MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@h1deya/mcp-server-weather"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 20:03:14.005281', '2025-07-10 20:03:14.005286', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 16:03:14,009 - main - WARNING - Failed to register example server weather-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('54cffb1d-2538-4011-95a7-0ddbb32e2482', 'weather-mcp', 'Weather information MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@h1deya/mcp-server-weather"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 20:03:14.005281', '2025-07-10 20:03:14.005286', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 16:03:14,013 - core.registry - ERROR - Failed to register server memory-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('72960f80-ac79-4fff-b118-3ca9de122214', 'memory-mcp', 'Memory MCP server for knowledge storage', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-memory"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 20:03:14.011696', '2025-07-10 20:03:14.011700', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 16:03:14,065 - main - WARNING - Failed to register example server memory-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('72960f80-ac79-4fff-b118-3ca9de122214', 'memory-mcp', 'Memory MCP server for knowledge storage', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-memory"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 20:03:14.011696', '2025-07-10 20:03:14.011700', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 16:03:14,120 - core.registry - ERROR - Failed to register server filesystem-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('b865a23b-37c5-4210-8fa3-b222cc020cb1', 'filesystem-mcp', 'Filesystem MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 20:03:14.099355', '2025-07-10 20:03:14.099358', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 16:03:14,126 - main - WARNING - Failed to register example server filesystem-mcp: (sqlite3.IntegrityError) UNIQUE constraint failed: mcp_servers.name
+[SQL: INSERT INTO mcp_servers (id, name, description, transport_type, transport_config, status, tools_count, resources_count, prompts_count, created_at, updated_at, last_health_check, health_check_failures, server_metadata) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('b865a23b-37c5-4210-8fa3-b222cc020cb1', 'filesystem-mcp', 'Filesystem MCP server', 'stdio', '{"command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"], "env": {}}', 'registering', 0, 0, 0, '2025-07-10 20:03:14.099355', '2025-07-10 20:03:14.099358', None, 0, '{}')]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2025-07-10 16:03:14,131 - main - INFO - Auto-connecting to registered servers...
+2025-07-10 16:03:14,141 - main - INFO - Connecting to dispatch...
+2025-07-10 16:03:14,960 - mcp.protocol - INFO - Discovered 16 tools
+2025-07-10 16:03:14,964 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 16:03:14,965 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 16:03:15,006 - core.registry - INFO - Connected to MCP server: dispatch
+2025-07-10 16:03:16,028 - main - INFO - Connected to dispatch - 16 tools
+2025-07-10 16:03:16,036 - main - INFO - Connecting to filesystem-mcp...
+2025-07-10 16:03:16,904 - mcp.protocol - INFO - Discovered 9 tools
+2025-07-10 16:03:16,906 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 16:03:16,906 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 16:03:16,926 - core.registry - INFO - Connected to MCP server: memory-mcp
+2025-07-10 16:03:17,031 - mcp.protocol - INFO - Discovered 2 tools
+2025-07-10 16:03:17,032 - mcp.protocol - WARNING - Failed to discover some capabilities: MCP Error -32601: Method not found
+2025-07-10 16:03:17,032 - mcp.protocol - INFO - Connected to MCP server via TransportType.STDIO
+2025-07-10 16:03:17,049 - core.registry - INFO - Connected to MCP server: weather-mcp
+2025-07-10 16:03:46,083 - mcp.protocol - ERROR - Failed to connect to MCP server: MCP Error -32001: Request timeout for method initialize
+2025-07-10 16:03:46,274 - main - INFO - Meta MCP Server initialized successfully

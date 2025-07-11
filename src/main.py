@@ -62,7 +62,18 @@ class MetaMCPServer:
         # Register example servers if in debug mode
         if settings.debug and settings.auto_register_examples:
             await self._register_example_servers()
-        
+        logger.info("Auto-connecting to registered servers...")
+        servers = self.registry.list_servers()
+        for server in servers:
+            if server.status.value != "active":
+                try:
+                    logger.info(f"Connecting to {server.name}...")
+                    success = await self.registry.connect_server(server.id)
+                    if success:
+                        await asyncio.sleep(1)  # Wait for tool discovery
+                        logger.info(f"Connected to {server.name} - {len(server.tools)} tools")
+                except Exception as e:
+                    logger.warning(f"Failed to connect to {server.name}: {e}")
         logger.info("Meta MCP Server initialized successfully")
     
     def _register_tools(self):
@@ -573,7 +584,34 @@ class MetaMCPServer:
         if self.registry:
             await self.registry.shutdown()
         logger.info("Meta MCP Server shutdown complete")
-
+    async def auto_connect_servers(self):
+        """Auto-connect to registered servers on startup"""
+        logger.info("Auto-connecting to registered servers...")
+        
+        # Get all registered servers
+        servers = self.registry.list_servers()
+        
+        for server in servers:
+            if server.status.value != "active" and server.registration.auto_connect:
+                logger.info(f"Attempting to connect to {server.name}...")
+                try:
+                    success = await self.registry.connect_server(server.id)
+                    if success:
+                        logger.info(f"✅ Connected to {server.name}")
+                        # Give it time to discover tools
+                        await asyncio.sleep(1)
+                    else:
+                        logger.warning(f"❌ Failed to connect to {server.name}")
+                except Exception as e:
+                    logger.error(f"Error connecting to {server.name}: {e}")
+        
+        # Log summary
+        active_servers = self.registry.list_active_servers()
+        logger.info(f"Connected to {len(active_servers)} servers")
+        
+        # List tools from each server
+        for server in active_servers:
+            logger.info(f"{server.name}: {len(server.tools)} tools available")
 
 async def main():
     """Main function"""

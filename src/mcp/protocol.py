@@ -134,9 +134,15 @@ class McpClient:
             return False
     
     async def _connect_stdio(self):
-        """Connect using stdio transport (subprocess)"""
+        """Connect using stdio transport (subprocess) with increased buffer limit"""
         command = self.transport_config.get("command")
         args = self.transport_config.get("args", [])
+        env = self.transport_config.get("env", {})
+        
+        # Prepare full environment
+        import os
+        full_env = os.environ.copy()
+        full_env.update(env)
         
         # Windows compatibility fix
         import platform
@@ -145,11 +151,14 @@ class McpClient:
             if command == "npx":
                 npx_path = shutil.which("npx.cmd") or shutil.which("npx")
                 if npx_path:
+                    # Increase buffer limit to 10MB (10 * 1024 * 1024)
                     self._process = await asyncio.create_subprocess_exec(
                         npx_path, *args,
                         stdin=asyncio.subprocess.PIPE,
                         stdout=asyncio.subprocess.PIPE,
-                        stderr=asyncio.subprocess.PIPE
+                        stderr=asyncio.subprocess.PIPE,
+                        env=full_env,
+                        limit=10 * 1024 * 1024  # 10MB buffer
                     )
                 else:
                     raise FileNotFoundError("npx not found in PATH")
@@ -158,14 +167,18 @@ class McpClient:
                     command, *args,
                     stdin=asyncio.subprocess.PIPE,
                     stdout=asyncio.subprocess.PIPE,
-                    stderr=asyncio.subprocess.PIPE
+                    stderr=asyncio.subprocess.PIPE,
+                    env=full_env,
+                    limit=10 * 1024 * 1024  # 10MB buffer
                 )
         else:
             self._process = await asyncio.create_subprocess_exec(
                 command, *args,
                 stdin=asyncio.subprocess.PIPE,
                 stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE
+                stderr=asyncio.subprocess.PIPE,
+                env=full_env,
+                limit=10 * 1024 * 1024  # 10MB buffer
             )
         
         # Start reading responses

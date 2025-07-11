@@ -1,0 +1,6 @@
+{
+  "dispatch_path": "C:\\etech\\SupportTickets\\dispatch-mcp",
+  "psa_url": "http://localhost:9019",
+  "redis_url": "redis://localhost:6379",
+  "server_id": "3ffcbe41-abbe-42af-950c-ea8209040b02"
+}
